@@ -1,4 +1,4 @@
-# solrCloudAnsiblePlaybook
+# Solr Cloud Ansible Playbook
 This playbook can be used to install Solr in cloud setup with zookeeper ensamble.
 
 You can install multiple instances of zookeeper and solr on same host. 
