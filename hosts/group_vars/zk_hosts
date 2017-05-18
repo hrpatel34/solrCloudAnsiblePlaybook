@@ -1,0 +1,6 @@
+zookeeper_version: "3.4.10"
+zookeeper_file_name: "zookeeper-{{ zookeeper_version }}.tar.gz"
+zookeeper_installation: "{{ executable_dir }}/zookeeper-{{ zookeeper_version }}"
+zookeeper_instance: "{{ user_home }}/zookeeper"
+zookeeper_java_memory: "-Xms2048m -Xmx4096m"
+

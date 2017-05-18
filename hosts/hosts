@@ -1,0 +1,13 @@
+[zk_hosts]
+server_1   ansible_user=idsuser
+server_2   ansible_user=idsuser
+
+[solr_hosts]
+server_1   ansible_user=idsuser
+server_2   ansible_user=idsuser
+
+
+[all_nodes:children]
+zk_hosts
+solr_hosts
+

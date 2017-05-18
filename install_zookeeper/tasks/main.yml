@@ -1,0 +1,13 @@
+---
+- name: Create zookeeper installation directory
+  file:
+    path: "{{ executable_dir }}"
+    state: directory
+    mode: "{{ folder_permission }}"
+
+- name: Extract ZooKeeper executables
+  unarchive:
+    src: "{{ zookeeper_file_name }}"
+    dest: "{{ executable_dir }}"
+
+...

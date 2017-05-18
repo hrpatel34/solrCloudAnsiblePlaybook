@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+echo "Stopping Solr Instance {{ item.name }} listening to port {{ item.solr_port }}"
+
+./solr stop -p {{ item.solr_port }}
+

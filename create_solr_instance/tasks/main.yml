@@ -1,0 +1,70 @@
+---
+- name: Create solr instance directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: "{{ folder_permission }}"
+  when: not( ("{{ item }}" is undefined) or ("{{ item }}" is none) or ("{{ item }}" | trim=='') )
+  with_items:
+    - "{{ solr_instance }}"
+    - "{{ solr_instance }}/bin"
+    - "{{ solr_instance }}/conf"
+    - "{{ solr_instance }}/logs"
+    - "{{ solr_instance }}/instances"
+
+- name: Create solr instance home directory
+  file:
+    path: "{{ solr_instance }}/instances/server-{{ item.name }}"
+    state: directory
+    mode: "{{ folder_permission }}"
+  when: not( ("{{ item }}" is undefined) or ("{{ item }}" is none) or ("{{ item }}" | trim=='') )
+  with_items:
+    - "{{ solr_instances }}"
+
+- name: Copy solr.xml file to instances home
+  copy:
+    src: "solr.xml"
+    dest: "{{ solr_instance }}/instances/server-{{ item.name }}"
+    mode: "{{ folder_permission }}"
+  when: not( ("{{ item }}" is undefined) or ("{{ item }}" is none) or ("{{ item }}" | trim=='') )
+  with_items:
+    - "{{ solr_instances }}"
+
+- name: Copy static config files
+  copy:
+    src: "{{ item }}"
+    dest: "{{ solr_instance }}/conf/{{ item }}"
+    mode: "{{ folder_permission }}"
+  when: not( ("{{ item }}" is undefined) or ("{{ item }}" is none) or ("{{ item }}" | trim=='') )
+  with_items:
+    - "log4j.properties"
+        
+- name: Copy script files
+  template:
+    src: "{{ item }}.j2"
+    dest: "{{ solr_instance }}/bin/{{ item }}"
+    mode: "{{ folder_permission }}"
+  when: not( ("{{ item }}" is undefined) or ("{{ item }}" is none) or ("{{ item }}" | trim=='') )
+  with_items:
+    - "solr"
+    - "solr.in.sh"
+        
+- name: Copy Start script file
+  template:
+    src: "start.sh.j2"
+    dest: "{{ solr_instance }}/bin/start-{{ item.name }}.sh"
+    mode: "{{ folder_permission }}"
+  when: not( ("{{ item }}" is undefined) or ("{{ item }}" is none) or ("{{ item }}" | trim=='') )
+  with_items:
+    - "{{ solr_instances }}"
+
+- name: Copy Stop script file
+  template:
+    src: "stop.sh.j2"
+    dest: "{{ solr_instance }}/bin/stop-{{ item.name }}.sh"
+    mode: "{{ folder_permission }}"
+  when: not( ("{{ item }}" is undefined) or ("{{ item }}" is none) or ("{{ item }}" | trim=='') )
+  with_items:
+    - "{{ solr_instances }}"
+
+...

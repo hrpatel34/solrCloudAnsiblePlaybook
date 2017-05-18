@@ -1,0 +1,6 @@
+user_home: "/local/apps/idsuser"
+executable_dir: "{{ user_home }}/softwares"
+folder_permission: "0755"
+
+java_home: "{{ executable_dir }}/jdk1.8.0_131"
+java_file_name: "jdk-8u131-linux-x64.tar.gz"

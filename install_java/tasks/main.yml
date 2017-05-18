@@ -1,0 +1,13 @@
+---
+- name: Create java installation directory
+  file:
+    path: "{{ executable_dir }}"
+    state: directory
+    mode: "{{ folder_permission }}"
+
+- name: Extract java installation
+  unarchive:
+    src: "{{ java_file_name }}"
+    dest: "{{ executable_dir }}"
+
+...

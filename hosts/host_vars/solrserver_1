@@ -1,0 +1,9 @@
+zknodes:
+ - name: three
+   zookeeper_server_id: 3
+   zookeeper_client_port: 42620
+   zookeeper_ports: "42630:42640"
+
+solr_instances:
+ - name: three
+   solr_port: 42850
